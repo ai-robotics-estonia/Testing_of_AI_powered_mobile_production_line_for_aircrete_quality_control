@@ -1,74 +1,70 @@
-*This is a template repository for this organization. Start by replacing the placeholder for the project name with its actual title.*
-
-# [Demonstration Project title]
+# [Testing of digitalisation and machine learning for quality control of mobile aircrete production equipment]
 
 ## Summary
-| Company Name | [Company](https://website.link) |
+| Company Name | [Kodatek](https://kodatek.ee) |
 | :--- | :--- |
-| Development Team Lead Name | [Dr. John Smith](https://profile.link) |
-| Development Team Lead E-mail | [email@example.com](mailto:email@example.com) |
-| Duration of the Demonstration Project | month/year-month/year |
-| Final Report | [Example_report.pdf](https://github.com/ai-robotics-estonia/_project_template_/files/13800685/IC-One-Page-Project-Status-Report-10673_PDF.pdf) |
+| Development Team Lead Name            | [Mattias Põldaru](https://www.etis.ee/CV/Mattias_Poldaru/eng/) |
+| Development Team Lead E-mail          | [mattias.poldaru@taltech.ee](mailto:mattias.poldaru@taltech.ee) |
+| Duration of the Demonstration Project | 07/2024-04/2025 |
+| Final Report | [Report.pdf](https://github.com/ai-robotics-estonia/Testing_of_AI_powered_mobile_production_line_for_aircrete_quality_control/blob/main/Report.pdf) |
 
-### Each project has an alternative for documentation
-1. Fill in the [description](#description) directly in the README below *OR*;
-2. make a [custom agreement with the AIRE team](#custom-agreement-with-the-AIRE-team).
 
 # Description
 ## Objectives of the Demonstration Project
-*Please describe your project objectives in detail.*
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The project’s goal was to test and validate the technical capability for the automatic collection and transmission of production process data to the artificial intelligence database in the required format to train the model. Necessary sensors and camera were installed on the mobile production equipment, which sends data to the control module with each production task. As a result of the project, the model and equipment have recorded data from the process for the initial training of machine learning model.
+
 
 ## Activities and Results of the Demonstration Project
 ### Challenge
-*Please describe challenge addressed (i.e, whether and how the initial challenge was changed during the project, for which investment the demonstration project was provided).*
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Today the operator is controlling the production process manually. Since the properties of foamed concrete is affected by several factors, taking them all into account without a good model is error prone.
+
+Testing in production revealed that quality control relies on having reliable measurement data on important process parameters. Some of the initially chosen methods (such as weighing a line with material) for data gathering did not provide reliable feedback and the plan was revised. Some additional checks were adjusted to catch different error scenarios, which caused problems during testing.
 
 ### Data Sources
-*Please describe which data was used for the technological solution.*  
-- [Source 1],
-- [Source 2],
-- etc... .
+
+Data sources used consist of time-series data of machine speeds, power, flow measurement of liquids and fresh mix, logging of compressed air state, measuring temperature of machine and curing environment. 
+Laboratory test results for density are linked to relevant production times and the relationship can be established later using timestamped video stream of production area.
 
 ### AI Technologies
-*Please describe and justify the use of selected AI technologies.*
-- [AI technology 1],
-- [AI technology 2],
-- etc... .
+
+Linear regression was used to establish solid base model about the process. Since conducting tests using production-scale machine produces about a hundred litres of material per minute, the initial tests were conducted in a non-wasteful manner, using curated tests to find the core relationships of process parameters.
+
+Real production data will continue to be acquired, which enables the model to be regularly updated. For this a script is used to find correlation between any two time series data columns and to prepare statistical summary for analysis together with laboratory data.
 
 ### Technological Results
-*Please describe the results of testing and validating the technological solution.*
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Continuous data logging for motor controller setpoint/present value of speed and power output was tested with checks for out of bounds values.
+
+Temperature and moisture logging of production line and humidity environment was tested.
+Video monitoring of production area to identify timestamps of important ranges of time-series data of testing process was tested.
+
+Laboratory samples were tested for the properties important from the building materials perspective.
+Initial relationship between raw values and machine output was determined.
+
+An initial model of relation between production parameters and output was tested. Gathering of the process data gives relevant information about the process. Further data acquisition is needed to fine-tune the process parameters and limits.
 
 ### Technical Architecture
-*Please describe the technical architecture (e.g, presented graphically, where the technical solution integration with the existing system can also be seen).*
-- [Component 1],
-- [Component 2], 
-- etc... .
 
-![backend-architecture](https://github.com/ai-robotics-estonia/_project_template_/assets/15941300/6d405b21-3454-4bd3-9de5-d4daad7ac5b7)
+The following chart illustrates the data acquisition and process control module signal flows.
 
+![graph](https://raw.githubusercontent.com/ai-robotics-estonia/Testing_of_AI_powered_mobile_production_line_for_aircrete_quality_control/refs/heads/main/scheme_outline.svg)
+Figure 1.
 
 ### User Interface 
-*Please describe the details about the user interface(i.e, how does the client 'see' the technical result, whether a separate user interface was developed, command line script was developed, was it validated as an experiment, can the results be seen in ERP or are they integrated into work process)*
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The user interface consists of three parts:
+- Control system with GUI to control the motors during test production runs and acquire process parameters related to motors.
+- Visualization of raw data for both live viewing and later analysis using Grafana dashboards.
+- Command line scripts to query the database for statistical profile and correlation analysis of data for chosen data columns and ranges.
 
 ### Future Potential of the Technical Solution
-*Please describe the potential areas for future use of the technical solution.*
-- [Use case 1],
-- [Use case 2],
-- etc... .
+
+The technical solution of data acquisition and process control can be used to improve aircrete production lines. It is very similar to the needs of mortar production lines for concrete 3D printing and probably other production lines with similarly continuous process.
 
 ### Lessons Learned
-*Please describe the lessons learned (i.e. assessment whether the technological solution actually solved the initial challenge).*
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Measuring process data live and setting up error conditions to stop or block starting the system reduces the most apparent possibility of producing non-compliant material.
 
-# Custom agreement with the AIRE team
-*If you have a unique project or specific requirements that don't fit neatly into the Docker file or description template options, we welcome custom agreements with our AIRE team. This option allows flexibility in collaborating with us to ensure your project's needs are met effectively.*
-
-*To explore this option, please contact our demonstration projects service manager via katre.eljas@taltech.ee with the subject line "Demonstration Project Custom Agreement Request - [Your Project Name]." In your email, briefly describe your project and your specific documentation or collaboration needs. Our team will promptly respond to initiate a conversation about tailoring a solution that aligns with your project goals.*
+The initially chosen measurement methods were partly insufficient to provide reliable feedback about the density of the produced material. A Coriolis effect based sensor system was chosen as a replacement for the earlier method.
