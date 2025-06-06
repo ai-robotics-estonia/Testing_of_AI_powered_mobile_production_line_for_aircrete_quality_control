@@ -1,4 +1,4 @@
-# [Testing of digitalisation and machine learning for quality control of mobile aircrete production equipment]
+# Testing of digitalisation and machine learning for quality control of mobile aircrete production equipment
 
 ## Summary
 | Company Name | [Kodatek](https://kodatek.ee) |
